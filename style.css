@@ -1,0 +1,501 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+:root {
+  --blue: #287bff;
+  --white: #fff;
+  --grey: #f5f5f5;
+  --black-1: #222;
+  --black-2: #999;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+}
+
+.navigation {
+  position: fixed;
+  width: 300px;
+  height: 100%;
+  background: var(--blue);
+  border-left: 10px solid var(--blue);
+  transition: 0.4s;
+  overflow: hidden;
+}
+
+.navigation.active {
+  width: 60px;
+  border-left: 5px solid var(--blue);
+  border-right: 5px solid var(--blue);
+}
+
+.navigation ul {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.navigation ul li {
+  position: relative;
+  width: 100%;
+  list-style: none;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+}
+.navigation ul li:nth-child(1) {
+  margin-bottom: 40px;
+  pointer-events: none;
+}
+.navigation ul li:hover,
+.navigation ul li.hovered {
+  background: var(--white);
+}
+
+.navigation ul li a {
+  position: relative;
+  display: block;
+  width: 100%;
+  display: flex;
+  text-decoration: none;
+  color: var(--white);
+}
+
+.navigation ul li:hover a,
+.navigation ul li.hovered a {
+  color: var(--blue);
+}
+
+.navigation ul li a .icon {
+  position: relative;
+  display: block;
+  min-width: 60px;
+  height: 60px;
+  line-height: 80px;
+  text-align: center;
+}
+
+.navigation ul li a .icon ion-icon {
+  font-size: 1.75em;
+}
+
+.navigation ul li a .title {
+  display: block;
+  padding: 0 10px;
+  height: 60px;
+  line-height: 60px;
+  text-align: start;
+}
+
+/* curbe outside */
+.navigation ul li:hover a::before,
+.navigation ul li.hovered a::before {
+  content: '';
+  position: absolute;
+  top: -50px;
+  right: 0;
+  width: 50px;
+  height: 50px;
+  background: var(--blue);
+  border-radius: 50%;
+  box-shadow: 35px 35px 0 10px var(--white);
+  z-index: -1;
+
+}
+
+.navigation ul li:hover a::after,
+.navigation ul li.hovered a::after {
+  content: '';
+  position: absolute;
+  bottom: -50px;
+  right: 0;
+  width: 50px;
+  height: 50px;
+  background: var(--blue);
+  border-radius: 50%;
+  box-shadow: 35px -35px 0 10px var(--white);
+  z-index: -1;
+}
+
+/* main */
+.main {
+  position: absolute;
+  width: calc(100% - 300px);
+  left: 300px;
+  min-height: 100vh;
+  background: var(--white);
+  transition: 0.5s;
+}
+
+.main.active {
+  left: 60px;
+  width: calc(100% - 60px);
+}
+
+.main .topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px 10px;
+  box-shadow: 0 8px 10px rgba(0,0,0,0.1);
+  user-select: none;
+}
+
+.main .topbar .toggle {
+  position: relative;
+  top: 0;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5em;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.main .topbar .search label {
+  position: relative;
+  width: 100%;
+}
+
+.main .topbar .search input{
+  width: 200px;
+  height: 30px;
+  border-radius: 40px;
+  padding: 0 20px;
+  padding-left: 35px;
+  outline: none;
+  border: 1px solid var(--black-2);
+}
+
+.main .topbar .search label ion-icon {
+  position: absolute;
+  left: 10px;  
+  top: 2px;
+}
+
+.main .topbar .userImg {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+
+.main .topbar .userImg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+/* card-box */
+.card-box {
+  position: relative;
+  width: 100%;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.card-box .card {
+  position: relative;
+  background: var(--white);
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 20px;
+  cursor: pointer;
+  box-shadow: 0 7px 25px rgba(0,0,0,0.08);
+  transition: linear .3s;
+}
+
+.card-box .card .number {
+  position: relative;
+  font-weight: 500;
+  font-size: 2em;
+  color: var(--blue);
+}
+
+.card-box .card .card-name {
+  display: block;
+  color: var(--black-2);
+  font-size: 1.1em;
+  margin-top: 5px;
+}
+
+.card-box .card .icon-box {
+  font-size: 2.5em;
+  color: var(--black-2);
+}
+
+.card-box .card:hover {
+  background: var(--blue);
+}
+
+.card-box .card:hover .number,
+.card-box .card:hover .card-name,
+.card-box .card:hover .icon-box {
+  color: var(--white);
+}
+
+.details {
+  position: relative;
+  width: 100%;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 30px;
+}
+
+.details .recent-orders {
+  position: relative;
+  display: grid;
+  min-height: 500px;
+  background: var(--white);
+  padding: 20px;
+  box-shadow: 0 7 25px rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
+}
+
+.details .recent-orders .card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;  
+}
+
+.details .recent-orders .card-header h2 {
+  font-weight: 600;
+  padding: 5px 10px;
+  color: var(--blue);
+}
+
+.details .recent-orders .card-header .btn {
+  background: var(--blue);
+  padding: 4px;
+  color: var(--white);
+  text-decoration: none;
+  border-radius: 3px;
+}
+
+.details .recent-orders table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.details .recent-orders table thead tr td {
+  font-weight: 600;
+}
+
+.details .recent-orders table tr {
+  color: var(--black-1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.details .recent-orders table tr:last-child {
+  border-bottom: none;
+}
+
+.details .recent-orders table tr:hover {
+  background: var(--blue);
+  color: var(--white);
+}
+
+.details .recent-orders table tr td {
+  padding: 10px;
+}
+
+.details .recent-orders table tr td:last-child {
+  text-align: end;
+}
+
+.details .recent-orders table tr td:nth-child(2) {
+  text-align: end;
+}
+
+.details .recent-orders table tr td:last-child(3) {
+  text-align: center;
+}
+
+.details .recent-orders table tr td .status.delivered {
+  padding: 2px 4px;
+  background: #8de02c;
+  color: var(--white);
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 4px;
+}
+
+.details .recent-orders table tr td .status.pending {
+  padding: 2px 4px;
+  background: #f9ca3f;
+  color: var(--white);
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 4px;
+}
+
+.details .recent-orders table tr td .status.returns {
+  padding: 2px 4px;
+  background: #f00;
+  color: var(--white);
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 4px;
+}
+
+.details .recent-orders table tr td .status.inprogress {
+  padding: 2px 4px;
+  background: #1795ce;
+  color: var(--white);
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 4px;
+}
+
+.recent-customer {
+  position: relative;
+  display: grid;
+  min-height: 500px;
+  padding: 15px;
+  background: var(--white);
+  border-radius: 20px;
+  box-shadow: 0 7px 25px rgba(0,0,0,0.08);
+  overflow: hidden;
+}
+
+.recent-customer table .img-box {
+  position: relative;
+  width: 60px;
+  height: 60px;  
+}
+
+.recent-customer table .img-box img{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  overflow: hidden;
+}
+
+.recent-customer table tr td {
+  padding: 8px 8px;
+  border-radius: 5px;
+}
+
+.recent-customer table tr td:nth-child(2) {
+  position: relative;
+}
+
+.recent-customer table tr:hover td:last-child:before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: -5px;
+  width: 10px;
+  height: 10px;
+  background: var(--blue);
+  transform: rotate(45deg);
+}
+
+.recent-customer table tr td h4 {
+  font-weight: 500;
+  line-height: 1.2;
+  font-size: 16px;
+}
+
+.recent-customer table tr td h4 span {
+  font-size: 14px;
+  color: var(--black-2);
+}
+
+.recent-customer table tr:hover {
+  background: var(--blue);
+  color: var(--white);
+}
+
+.recent-customer table tr:hover td h4 span {
+  color: var(--white);
+}
+
+
+/* resposive design */
+@media only screen and (max-width: 991px) {
+  .navigation {
+    left: -300px
+  }
+  
+  .navigation.active {
+    left: 0;
+    width: 300px;
+    border-right: none;
+  }
+
+  .main {
+    width: 100%;
+    left: 0;
+  }
+
+  .main.active {
+    left: 300px;
+  }
+
+  .card-box {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .details {
+    grid-template-columns: repeat(1,1fr);
+  }
+
+  .recent-orders {
+    white-space: nowrap;
+    overflow-x: auto;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .card-box {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .navigation {
+    width: 100%;
+    left: -100%;
+    z-index: 1000;
+  }
+
+  .navigation.active {
+    width: 100%;
+    left: 0;    
+  }
+
+  .toggle {
+    z-index: 10001;
+  }
+
+  .main.active .toggle {
+    color: var(--white);
+  }
+}
+
+
